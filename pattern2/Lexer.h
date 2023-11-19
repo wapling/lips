@@ -44,6 +44,8 @@ public:
     current_(input.empty() ? EOF_CHAR : input_[0])
   {}
 
+  virtual ~Lexer() = default;
+
   void consume()
   {
     index_++;
