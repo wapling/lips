@@ -1,7 +1,7 @@
 #include "ListLexer.h"
 
 #include <sstream>
-#include <vector>
+#include <array>
 
 using namespace std;
 
@@ -18,7 +18,7 @@ bool is_letter(char x)
 
 string const& ListLexer::get_token_name(int x)
 {
-  static vector<string> const token_names 
+  static array<string, 6> const token_names 
   {
     "n/a",
     "<EOF>",
