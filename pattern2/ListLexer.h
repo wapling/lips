@@ -3,9 +3,10 @@
 #include "Lexer.h"
 #include "Token.h"
 
+#include <array>
 #include <ostream>
-#include <string>
 #include <stdexcept>
+#include <string>
 
 struct InvalidCharacter : public std::runtime_error
 {
@@ -34,7 +35,17 @@ public:
   static int const LBRACK = 4;
   static int const RBRACK = 5;
 
-  static std::string const& get_token_name(int x);
+  static std::array<char const* const, 6> constexpr token_names
+  {
+    "n/a",
+    "<EOF>",
+    "NAME",
+    "COMMA",
+    "LBRACK",
+    "RBRACK"
+  };
+
+  static char const* const get_token_name(int x);
 
   Token next_token() override;
   void ws();

@@ -1,7 +1,6 @@
 #include "ListLexer.h"
 
 #include <sstream>
-#include <array>
 
 using namespace std;
 
@@ -16,18 +15,9 @@ bool is_letter(char x)
 
 }
 
-string const& ListLexer::get_token_name(int x)
+char const* const ListLexer::get_token_name(int x)
 {
-  static array<string, 6> const token_names 
-  {
-    "n/a",
-    "<EOF>",
-    "NAME",
-    "COMMA",
-    "LBRACK",
-    "RBRACK"
-  };
-  static string const nothing = "";
+  static char const* const nothing = "";
 
   if (x < 0 || x >= token_names.size())
     return nothing;
