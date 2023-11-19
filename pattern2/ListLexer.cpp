@@ -68,11 +68,11 @@ void ListLexer::ws()
 Token ListLexer::name()
 {
   ostringstream oss;
-  while (is_letter(current_))
+  do
   {
     oss << current_;
     consume();
-  }
+  } while (is_letter(current_));
   return Token(NAME, oss.str());
 }
 
