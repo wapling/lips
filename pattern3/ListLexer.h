@@ -9,10 +9,6 @@
 class ListLexer : public Lexer
 {
 public:
-  static int const NAME   = 2;
-  static int const COMMA  = 3;
-  static int const LBRACK = 4;
-  static int const RBRACK = 5;
 
   ListLexer(std::string const & input) : Lexer(input) 
   {}
