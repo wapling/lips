@@ -1,5 +1,7 @@
+STD_HEADERS = /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include
+
 CXXFLAGS = -g -std=c++20 -Wall \
-					 -I/Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include \
+					 -I${STD_HEADERS} \
 
 LDFLAGS = -stdlib=libc++ 
 
