@@ -6,17 +6,11 @@
 #include <stdexcept>
 #include <sstream>
 #include <string>
+#include <utility>
+
 
 class InvalidToken : public std::runtime_error
 {
-  static std::string get_message(Token const& expecting, Token const& found)
-  {
-    std::ostringstream oss;
-    oss << "Expecting '" << expecting
-        << "', found '" << found << "'";
-    return oss.str();
-  }
-
   static std::string get_message(std::string const& expecting, Token const& found)
   {
     std::ostringstream oss;
@@ -27,15 +21,12 @@ class InvalidToken : public std::runtime_error
 
 public:
 
+  std::string expecting_;
   Token found_;
 
-  InvalidToken(Token const& expecting, Token const& found) :
-    std::runtime_error(get_message(expecting, found).c_str()),
-    found_(found)
-  {}
-
-  InvalidToken(std::string const& expecting, Token const& found) :
-    std::runtime_error(get_message(expecting, found).c_str()),
+  InvalidToken(std::string expecting, Token const& found) :
+    std::runtime_error(get_message(expecting, found)),
+    expecting_(std::move(expecting)),
     found_(found)
   {}  
 };
