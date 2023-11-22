@@ -17,7 +17,7 @@ public:
   char invalid_;
 
   InvalidCharacter(char invalid) :
-    std::runtime_error(get_message(invalid).c_str()),
+    std::runtime_error(get_message(invalid)),
     invalid_(invalid)
   {}  
 };
