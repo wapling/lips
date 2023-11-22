@@ -2,8 +2,9 @@
 
 #include "Token.h"
 
-#include <string>
 #include <stdexcept>
+#include <string>
+#include <utility>
 
 struct MatchException : public std::runtime_error
 {
@@ -38,8 +39,8 @@ public:
   static char const EOF_CHAR = -1;
   static int  const EOF_TYPE =  1;
 
-  Lexer(std::string const& input) :
-    input_(input),
+  Lexer(std::string input) :
+    input_(std::move(input)),
     index_(0),
     current_(input.empty() ? EOF_CHAR : input_[0])
   {}
