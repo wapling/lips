@@ -2,7 +2,7 @@
 
 #include "Token.h"
 
-#include <ostream>
+#include <iosfwd>
 #include <string>
 
 int const NAME   = 2;
