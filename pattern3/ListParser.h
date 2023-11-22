@@ -2,6 +2,7 @@
 
 #include "Parser.h"
 #include "Lexer.h"
+#include "Tokens.h"
 #include "InvalidToken.h"
 
 class ListParser : public Parser
@@ -9,9 +10,9 @@ class ListParser : public Parser
   void elements()
   {
     element();
-    while (lookahead_.get_type() == ListLexer::COMMA)
+    while (lookahead_.get_type() == COMMA)
     {
-      match(ListLexer::COMMA);
+      match(COMMA);
       element();
     }
   }
@@ -19,9 +20,9 @@ class ListParser : public Parser
   void element()
   {
     int const lookahead_type = lookahead_.get_type();
-    if (lookahead_type == ListLexer::NAME)
-      match(ListLexer::NAME);
-    else if (lookahead_type == ListLexer::LBRACK)
+    if (lookahead_type == NAME)
+      match(NAME);
+    else if (lookahead_type == LBRACK)
       list();
     else
       throw InvalidToken("Name or List", lookahead_);
@@ -35,9 +36,9 @@ public:
 
   void list()
   {
-    match(ListLexer::LBRACK);
+    match(LBRACK);
     elements();
-    match(ListLexer::RBRACK);
+    match(RBRACK);
   }
 };
 
