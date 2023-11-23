@@ -3,14 +3,11 @@
 #include "Lexer.h"
 #include "Token.h"
 
-#include <ostream>
 #include <string>
 
-class ListLexer : public Lexer
+struct ListLexer : public Lexer
 {
-public:
-
-  ListLexer(std::string const & input) : Lexer(input) 
+  ListLexer(std::string const& input) : Lexer(input) 
   {}
 
   std::string const& get_token_name(int x) const override;
