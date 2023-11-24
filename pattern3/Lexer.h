@@ -42,7 +42,7 @@ public:
   Lexer(std::string input) :
     input_(std::move(input)),
     index_(0),
-    current_(input.empty() ? EOF_CHAR : input_[0])
+    current_(input_.empty() ? EOF_CHAR : input_[0])
   {}
 
   virtual ~Lexer() = default;
