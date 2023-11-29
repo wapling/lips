@@ -5,9 +5,9 @@
 
 using namespace std;
 
-string const& get_token_name(int x)
+char const* const get_token_name(int x)
 {
-  static array<string, 6> const token_names 
+  static array<char const* const, 6> const token_names 
   {
     "n/a",
     "<EOF>",
@@ -16,7 +16,7 @@ string const& get_token_name(int x)
     "LBRACK",
     "RBRACK"
   };
-  static string const nothing = "";
+  static char const* const nothing = "";
 
   if (x < 0 || x >= token_names.size())
     return nothing;
