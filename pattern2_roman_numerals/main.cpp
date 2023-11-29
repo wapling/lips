@@ -1,6 +1,7 @@
 #include "RomanNumeralLexer.h"
 #include "RomanNumeralAdder.h"
 #include "InvalidRomanNumeral.h"
+#include "InvalidCharacter.h"
 
 #include <iostream>
 
@@ -23,11 +24,17 @@ void LoopOverInput()
         adder.add(token);
       } while (token.get_type() != Lexer::EOF_TYPE);
 
-      cout << adder.get_total() << '\n';
+      cout << "Roman numeral: " << input << " = " << adder.get_total() << '\n';
     }
     catch (InvalidRomanNumeral const& ex)
     {
-      cout << "Invalid Roman Numeral: " << ex.what() << '\n';
+      cout << "Invalid Roman Numeral: " << input 
+           << " has the following error:\n" << ex.what() << '\n';
+    }
+    catch (InvalidCharacter const& ex)
+    {
+      cout << "Invalid Roman Numeral: " << input 
+           << " has the following error:\n" << ex.what() << '\n';
     }
   }
 }
