@@ -3,7 +3,7 @@
 #include <stdexcept>
 #include <string>
 
-struct InvalidCharacter : public std::runtime_error
+struct InvalidCharacter : std::runtime_error
 {
   char invalid_;
 
@@ -14,7 +14,6 @@ struct InvalidCharacter : public std::runtime_error
     return message;
   }
 
-public:
   InvalidCharacter(char invalid) :
     std::runtime_error(get_message(invalid).c_str()),
     invalid_(invalid)
