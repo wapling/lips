@@ -1,19 +1,20 @@
 #include "RomanNumeralAdder.h"
 #include "Token.h"
+#include "Tokens.h"
 #include "InvalidRomanNumeral.h"
 
 void RomanNumeralAdder::add(Token const& token)
 {
   switch (token.get_type())
   {
-    case RomanNumeralLexer::THOUSAND:
+    case THOUSAND:
       if (thousands_done_)
         throw InvalidRomanNumeral(token.get_text(), "Invalid character order for Roman Numeral");
       total_ += token.get_text().length() * 1000;
       thousands_done_ = true;
       break;
 
-    case RomanNumeralLexer::FIVE_HUNDRED:
+    case FIVE_HUNDRED:
       if (five_hundred_done_)
         throw InvalidRomanNumeral(token.get_text(), "Invalid character order for Roman Numeral");
       total_ += 500;
@@ -21,7 +22,7 @@ void RomanNumeralAdder::add(Token const& token)
       five_hundred_done_ = true;
       break;
 
-    case RomanNumeralLexer::HUNDRED:
+    case HUNDRED:
       if (hundreds_done_)
         throw InvalidRomanNumeral(token.get_text(), "Invalid character order for Roman Numeral");
       total_ += token.get_text().length() * 100;
@@ -30,7 +31,7 @@ void RomanNumeralAdder::add(Token const& token)
       hundreds_done_ = true;
       break;
 
-    case RomanNumeralLexer::FIFTY:
+    case FIFTY:
       if (fifty_done_)
         throw InvalidRomanNumeral(token.get_text(), "Invalid character order for Roman Numeral");
       total_ += 50;
@@ -40,7 +41,7 @@ void RomanNumeralAdder::add(Token const& token)
       fifty_done_ = true;
       break;
 
-    case RomanNumeralLexer::TEN:
+    case TEN:
       if (tens_done_)
         throw InvalidRomanNumeral(token.get_text(), "Invalid character order for Roman Numeral");
       total_ += token.get_text().length() * 10;
@@ -51,7 +52,7 @@ void RomanNumeralAdder::add(Token const& token)
       tens_done_ = true;
       break;
 
-    case RomanNumeralLexer::FIVE:
+    case FIVE:
       if (five_done_)
         throw InvalidRomanNumeral(token.get_text(), "Invalid character order for Roman Numeral");
       total_ += 5;
@@ -63,7 +64,7 @@ void RomanNumeralAdder::add(Token const& token)
       five_done_ = true;
       break;
     
-    case RomanNumeralLexer::ONE:
+    case ONE:
       if (ones_done_)
         throw InvalidRomanNumeral(token.get_text(), "Invalid character order for Roman Numeral");
       total_ += token.get_text().length();
