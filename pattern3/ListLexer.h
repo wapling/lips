@@ -5,7 +5,7 @@
 
 #include <string>
 
-struct ListLexer : public Lexer
+struct ListLexer : Lexer
 {
   ListLexer(std::string const& input) : Lexer(input) 
   {}
