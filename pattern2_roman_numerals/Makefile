@@ -9,6 +9,7 @@ LDFLAGS = -stdlib=libc++
 OBJS := main.o \
 				RomanNumeralLexer.o \
 				RomanNumeralAdder.o \
+				Tokens.o
 
 all: example 
 
