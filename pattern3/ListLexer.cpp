@@ -1,5 +1,4 @@
 #include "ListLexer.h"
-#include "InvalidCharacter.h"
 #include "Tokens.h"
 
 #include <sstream>
