@@ -2,8 +2,9 @@
 
 #include "Token.h"
 
-#include <string>
 #include <stdexcept>
+#include <string>
+#include <utility>
 
 struct MatchException : public std::runtime_error
 {
@@ -27,21 +28,21 @@ public:
 };
 
 class Lexer
-
 {
-protected:
   std::string input_;
   int         index_;
+
+protected:
   char    current_;
 
 public:
   static char const EOF_CHAR = -1;
   static int  const EOF_TYPE =  1;
 
-  Lexer(std::string const& input) :
-    input_(input),
+  Lexer(std::string input) :
+    input_(std::move(input)),
     index_(0),
-    current_(input.empty() ? EOF_CHAR : input_[0])
+    current_(input_.empty() ? EOF_CHAR : input_[0])
   {}
 
   virtual ~Lexer() = default;
@@ -62,6 +63,9 @@ public:
     consume();
   }
 
+  std::string const& get_input() const { return input_; }
+
   virtual Token next_token() = 0;
+  virtual char const* const get_token_name(int x) const = 0;
 };
 
