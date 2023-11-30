@@ -1,4 +1,5 @@
 #include "ListLexer.h"
+#include "Tokens.h"
 
 #include <iostream>
 
@@ -9,7 +10,7 @@ int main(int argc, char* argv[])
   for(string input; getline(cin, input);)
   {
     ListLexer lexer(input);
-    Token token (Lexer::EOF_TYPE, ListLexer::get_token_name(Lexer::EOF_TYPE));
+    Token token (Lexer::EOF_TYPE, lexer.get_token_name(Lexer::EOF_TYPE));
     do
     {
       token = lexer.next_token();

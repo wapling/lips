@@ -1,4 +1,5 @@
 #include "ListLexer.h"
+#include "Tokens.h"
 
 #include <sstream>
 
@@ -15,14 +16,9 @@ bool is_letter(char x)
 
 }
 
-char const* const ListLexer::get_token_name(int x)
+char const* const ListLexer::get_token_name(int x) const
 {
-  static char const* const nothing = "";
-
-  if (x < 0 || x >= token_names.size())
-    return nothing;
-
-  return token_names[x];
+  return ::get_token_name(x);
 }
 
 Token ListLexer::next_token()
@@ -76,12 +72,5 @@ Token ListLexer::name()
   return Token(NAME, oss.str());
 }
 
-ostream& operator<<(ostream& ostrm, Token const& token)
-{
-  ostrm << "<'" << token.get_text() 
-        << "',"  << ListLexer::get_token_name(token.get_type())
-        << ">";
-  return ostrm;  
-}
 
 
