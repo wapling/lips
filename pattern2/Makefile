@@ -8,6 +8,8 @@ LDFLAGS = -stdlib=libc++
 
 OBJS := main.o \
 				ListLexer.o \
+				Tokens.o \
+
 
 all: example 
 
