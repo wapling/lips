@@ -31,17 +31,17 @@ Token ListLexer::next_token()
         ws();
         break;
 
-      case ',':
+      case COMMA_CHAR:
         consume();
-        return Token(COMMA, ",");
+        return Token(COMMA, COMMA_CHAR);
 
-      case '[':
+      case LBRACK_CHAR:
         consume();
-        return Token(LBRACK, "[");
+        return Token(LBRACK, LBRACK_CHAR);
 
-      case ']':
+      case RBRACK_CHAR:
         consume();
-        return Token(RBRACK, "]");
+        return Token(RBRACK, RBRACK_CHAR);
 
       default:
         if (is_letter(current_))
