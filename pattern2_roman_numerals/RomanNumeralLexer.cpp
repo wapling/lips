@@ -1,17 +1,13 @@
 #include "RomanNumeralLexer.h"
+#include "Tokens.h"
 
 #include <sstream>
 
 using namespace std;
 
-char const* const RomanNumeralLexer::get_token_name(int x)
+char const* const RomanNumeralLexer::get_token_name(int x) const
 {
-  static char const* const nothing = "";
-
-  if (x < 0 || x >= token_names.size())
-    return nothing;
-
-  return token_names[x];
+  return ::get_token_name(x);
 }
 
 Token RomanNumeralLexer::next_token()
@@ -71,7 +67,7 @@ Token RomanNumeralLexer::hundred()
   do
   {
     if (count > 4)
-      throw InvalidRomanNumeral(input_, "More than 4 consecutive Cs");
+      throw InvalidRomanNumeral(get_input(), "More than 4 consecutive Cs");
     oss << current_;
     consume();
     ++count;
@@ -92,7 +88,7 @@ Token RomanNumeralLexer::ten()
   do
   {
     if (count > 4)
-      throw InvalidRomanNumeral(input_, "More than 4 consecutive Xs");
+      throw InvalidRomanNumeral(get_input(), "More than 4 consecutive Xs");
     oss << current_;
     consume();
     ++count;
@@ -113,20 +109,12 @@ Token RomanNumeralLexer::one()
   do
   {
     if (count > 4)
-      throw InvalidRomanNumeral(input_, "More than 4 consecutive Is");
+      throw InvalidRomanNumeral(get_input(), "More than 4 consecutive Is");
     oss << current_;
     consume();
     ++count;
   } while (current_ == ONE_CHAR);
   return Token(ONE, oss.str());
-}
-
-ostream& operator<<(ostream& ostrm, Token const& token)
-{
-  ostrm << "<'" << token.get_text() 
-        << "',"  << RomanNumeralLexer::get_token_name(token.get_type())
-        << ">";
-  return ostrm;  
 }
 
 

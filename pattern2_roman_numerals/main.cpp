@@ -1,7 +1,6 @@
 #include "RomanNumeralLexer.h"
 #include "RomanNumeralAdder.h"
-#include "InvalidRomanNumeral.h"
-#include "InvalidCharacter.h"
+#include "Tokens.h"
 
 #include <iostream>
 
@@ -13,7 +12,7 @@ void LoopOverInput()
   {
     RomanNumeralLexer lexer(input);
     RomanNumeralAdder adder;
-    Token token(Lexer::EOF_TYPE, RomanNumeralLexer::get_token_name(Lexer::EOF_TYPE));
+    Token token(Lexer::EOF_TYPE, lexer.get_token_name(Lexer::EOF_TYPE));
 
     try
     {
