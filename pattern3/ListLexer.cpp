@@ -17,7 +17,7 @@ bool is_letter(char x)
 
 }
 
-string const& ListLexer::get_token_name(int x) const
+char const* const ListLexer::get_token_name(int x) const
 {
   return ::get_token_name(x);
 }

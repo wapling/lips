@@ -10,7 +10,7 @@ struct ListLexer : public Lexer
   ListLexer(std::string const& input) : Lexer(input) 
   {}
 
-  std::string const& get_token_name(int x) const override;
+  char const* const get_token_name(int x) const override;
 
   Token next_token() override;
   void ws();

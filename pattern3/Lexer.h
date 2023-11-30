@@ -64,6 +64,6 @@ public:
   }
 
   virtual Token next_token() = 0;
-  virtual std::string const& get_token_name(int x) const = 0; 
+  virtual char const* const get_token_name(int x) const = 0; 
 };
 
