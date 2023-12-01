@@ -57,6 +57,7 @@ Token RomanNumeralLexer::thousand()
 Token RomanNumeralLexer::five_hundred()
 {
   consume();
+  five_hundred_seen_ = true;
   return Token(FIVE_HUNDRED, FIVE_HUNDRED_CHAR);
 }
 
@@ -72,12 +73,18 @@ Token RomanNumeralLexer::hundred()
     consume();
     ++count;
   } while (current_ == HUNDRED_CHAR);
+  if (!five_hundred_seen_ && count == 1 && current_ == THOUSAND_CHAR)
+  {
+    consume();
+    return Token(NINE_HUNDRED, "CM");
+  }
   return Token(HUNDRED, oss.str());
 }
 
 Token RomanNumeralLexer::fifty()
 {
   consume();
+  fifty_seen_ = true;
   return Token(FIFTY, FIFTY_CHAR);
 }
 
@@ -93,6 +100,11 @@ Token RomanNumeralLexer::ten()
     consume();
     ++count;
   } while (current_ == TEN_CHAR);
+  if (!fifty_seen_ && count == 1 && current_ == HUNDRED_CHAR)
+  {
+    consume();
+    return Token(NINETY, "XC");
+  }
   return Token(TEN, oss.str());
 }
 
@@ -114,6 +126,16 @@ Token RomanNumeralLexer::one()
     consume();
     ++count;
   } while (current_ == ONE_CHAR);
+  if (count == 1 && current_ == TEN_CHAR)
+  {
+    consume();
+    return Token(NINE, "IX");
+  }
+  else if (count == 1 && current_ == FIVE_CHAR)
+  {
+    consume();
+    return Token(FOUR, "IV");
+  }
   return Token(ONE, oss.str());
 }
 

@@ -6,12 +6,16 @@
 
 
 int const THOUSAND     = 2;
-int const FIVE_HUNDRED = 3;
-int const HUNDRED      = 4;
-int const FIFTY        = 5;
-int const TEN          = 6;
-int const FIVE         = 7;
-int const ONE          = 8;
+int const NINE_HUNDRED = 3;
+int const FIVE_HUNDRED = 4;
+int const HUNDRED      = 5;
+int const NINETY       = 6;
+int const FIFTY        = 7;
+int const TEN          = 8;
+int const NINE         = 9;
+int const FIVE         = 10;
+int const FOUR         = 11;
+int const ONE          = 12;
 
 char const THOUSAND_CHAR     = 'M';
 char const FIVE_HUNDRED_CHAR = 'D';

@@ -8,16 +8,20 @@ using namespace std;
 
 char const* const get_token_name(int x)
 {
-  static std::array<char const* const, 9> constexpr token_names
+  static std::array<char const* const, 13> constexpr token_names
   {
     "n/a",
     "<EOF>",
     "THOUSAND",
+    "NINE_HUNDRED",
     "FIVE_HUNDRED",
     "HUNDRED",
+    "NINETY",
     "FIFTY",
     "TEN",
+    "NINE",
     "FIVE",
+    "FOUR",
     "ONE"
   };
   static char const* const nothing = "";

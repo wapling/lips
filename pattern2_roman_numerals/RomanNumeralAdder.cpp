@@ -14,6 +14,12 @@ void RomanNumeralAdder::add(Token const& token)
       thousands_done_ = true;
       break;
 
+    case NINE_HUNDRED:
+      total_ += 900;
+      thousands_done_ = true;
+      five_hundred_done_ = true;
+      break;
+
     case FIVE_HUNDRED:
       if (five_hundred_done_)
         throw InvalidRomanNumeral(token.get_text(), "Invalid character order for Roman Numeral");
@@ -29,6 +35,14 @@ void RomanNumeralAdder::add(Token const& token)
       thousands_done_ = true;
       five_hundred_done_ = true;
       hundreds_done_ = true;
+      break;
+
+    case NINETY:
+      total_ += 90;
+      thousands_done_ = true;
+      five_hundred_done_ = true;
+      hundreds_done_ = true;
+      fifty_done_ = true;
       break;
 
     case FIFTY:
@@ -52,6 +66,17 @@ void RomanNumeralAdder::add(Token const& token)
       tens_done_ = true;
       break;
 
+    case NINE:
+      total_ += 9;
+      thousands_done_ = true;
+      five_hundred_done_ = true;
+      hundreds_done_ = true;
+      fifty_done_ = true;
+      tens_done_ = true;
+      five_done_ = true;
+      ones_done_ = true;
+      break;
+
     case FIVE:
       if (five_done_)
         throw InvalidRomanNumeral(token.get_text(), "Invalid character order for Roman Numeral");
@@ -62,6 +87,17 @@ void RomanNumeralAdder::add(Token const& token)
       fifty_done_ = true;
       tens_done_ = true;
       five_done_ = true;
+      break;
+    
+    case FOUR:
+      total_ += 4;
+      thousands_done_ = true;
+      five_hundred_done_ = true;
+      hundreds_done_ = true;
+      fifty_done_ = true;
+      tens_done_ = true;
+      five_done_ = true;
+      ones_done_ = true;
       break;
     
     case ONE:
