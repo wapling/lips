@@ -2,7 +2,7 @@
 
 #include "Lexer.h"
 #include "Token.h"
-#include "InvalidToken.h"
+#include "MismatchedTokenException.h"
 
 #include <stack>
 #include <vector>
@@ -91,7 +91,7 @@ public:
     if (LA(1) == x)
       consume();
     else
-      throw InvalidToken(input_.get_token_name(x), LT(1));
+      throw MismatchedTokenException(input_.get_token_name(x), LT(1));
   }
 
 };
