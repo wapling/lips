@@ -11,7 +11,7 @@ struct AddNode : ExprNode
     add_child(left);
     add_child(right);
   }
-  
+ /* 
   int get_eval_type() const override
   {
     ExprNode* left_node = static_cast<ExprNode*>(children_[0].get());
@@ -25,5 +25,6 @@ struct AddNode : ExprNode
     else
       return left_eval_type;
   }
+*/
 };
 
