@@ -2,6 +2,7 @@
 #include "Ast.h"
 #include "AddNode.h"
 #include "IntNode.h"
+#include "VectorNode.h"
 
 #include <iostream>
 #include <stdexcept>
