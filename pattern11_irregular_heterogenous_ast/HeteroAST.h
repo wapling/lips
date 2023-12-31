@@ -22,6 +22,7 @@ struct HeteroAST
   HeteroAST(int token_type) :
     token_(token_type)
   {}
+  virtual ~HeteroAST() = default;
 
   virtual std::string to_string() const { return token_.get_text(); }
   virtual std::string to_string_tree() const { return to_string(); }
