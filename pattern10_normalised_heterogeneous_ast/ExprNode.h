@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Ast.h"
+#include "Token.h"
 
 #include <memory>
 #include <string>
