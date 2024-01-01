@@ -20,6 +20,5 @@ public:
     for (auto const& element : elements_)
       element->print();
   }
-  
 };
 
