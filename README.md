@@ -36,6 +36,7 @@ When building ANTLR C++ code I encountered the following errors and warnings:
 
 # Errors and Warnings in Generated ANTLR C++ Code
 
+## C++ Versions
 I could not build the ANTLR examples with C++20 due to the following errors:
 
 1)  error: arithmetic on a pointer to an incomplete type 'antlr4::tree::xpath::XPathElement'
@@ -62,5 +63,14 @@ Switching down to C++17 solves the issue and produces the following warnings:
   include/antlr4-runtime/support/StringUtils.h:37:5
 
 Switching down to C++14 or C++11 removes the deprecated warnings leaving only the default function deleted ones.
+
+## Issues and Errors in Generated ANTLR C++ Code
+
+1) Usage of $start has to be replaced with $ctx.start to avoid:
+
+  error(33):  missing code generation template ThisRulePropertyRef_startHeader
+
+  Same goes for $stop.
+  See https://github.com/antlr/antlr4/issues/2207 for more details
 
 
