@@ -13,7 +13,8 @@ LDFLAGS = -stdlib=libc++ \
 OBJS := main.o \
 				Symbol.o \
 				SymbolTable.o \
-
+				CymbolLexer.o \
+				CymbolParser.o \
 
 all: example 
 
