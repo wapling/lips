@@ -12,7 +12,7 @@ std::ostream& operator<<(std::ostream& ostrm, SymbolMap const& data)
       first_try = false;
     else
       ostrm << ", ";
-    ostrm << datum->second;
+    ostrm << datum.second;
   }
   ostrm << "]";
   return ostrm;
