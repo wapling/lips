@@ -1,9 +1,13 @@
 grammar Cymbol;
 
 @header {
+  #include "Symbol.h"
   #include "SymbolTable.h"
+  #include "Type.h"
   #include "VariableSymbol.h"
+
   #include <iostream>
+  #include <memory>
 }
 
 @members {
@@ -16,14 +20,14 @@ compilationUnit[SymbolTablePtr symtab]
   : varDeclaration+
   ;
 
-type returns [Type tsym]
+type returns [TypePtr tsym]
 @after {
   std::cout << "line " << $ctx.start.getLine()
-            << ": ref " << $tsym.getName()
+            << ": ref " << $tsym->getName()
             << std::endl;
 }
-  : 'float' {$tsym = (Type)symtab->resolve("float");}
-  | 'int'   {$tsym = (Type)symtab->resolve("int");}
+  : 'float' {$tsym = std::dynamic_pointer_cast<Type>(symtab->resolve("float"));}
+  | 'int'   {$tsym = std::dynamic_pointer_cast<Type>(symtab->resolve("int"));}
   ;
 
 varDeclaration
@@ -32,7 +36,7 @@ varDeclaration
       std::cout << "line " << $ID.getLine()
                 << ": def " << $ID.text()
                 << std::endl;
-      VariableSymbol vs($ID.text(), $type.tsym);
+      SymbolPtr vs(std::make_shared<VariableSymbol>($ID.text(), $type.tsym));
       symtab->define(vs);
     }
   ;
