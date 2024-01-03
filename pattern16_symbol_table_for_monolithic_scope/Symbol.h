@@ -16,7 +16,7 @@ public:
     name_(name)
   {}
 
-  Symbol(std::string const& name, Type const& type) :
+  Symbol(std::string const& name, TypePtr type) :
     name_(name),
     type_(type)
   {}
