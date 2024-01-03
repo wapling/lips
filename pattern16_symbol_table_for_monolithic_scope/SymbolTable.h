@@ -53,7 +53,7 @@ public:
     if (result == symbols_.end())
       return nullptr;
     else
-      return result.->second();
+      return result->second;
   }
 
   std::string to_string() const;
