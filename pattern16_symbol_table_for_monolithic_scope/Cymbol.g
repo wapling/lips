@@ -1,14 +1,16 @@
 grammar Cymbol;
 
-@deaders {
+@header {
+  #include "SymbolTable.h"
+  #include "VariableSymbol.h"
   #include <iostream>
 }
 
 @members {
-  SymbolTable symtab;
+  SymbolTablePtr symtab;
 }
 
-compilationUnit[SymbolTable symtab]
+compilationUnit[SymbolTablePtr symtab]
 
 @init {this.symtab = symtab;}
   : varDeclaration+
@@ -20,8 +22,8 @@ type returns [Type tsym]
             << ": ref " << $tsym.getName()
             << std::endl;
 }
-  : 'float' {$tsym = (Type)symtab.resolve("float");}
-  | 'int'   {$tsym = (Type)symtab.resolve("int");}
+  : 'float' {$tsym = (Type)symtab->resolve("float");}
+  | 'int'   {$tsym = (Type)symtab->resolve("int");}
   ;
 
 varDeclaration
@@ -31,7 +33,7 @@ varDeclaration
                 << ": def " << $ID.text()
                 << std::endl;
       VariableSymbol vs($ID.text(), $type.tsym);
-      symtab.define(vs);
+      symtab->define(vs);
     }
   ;
 
@@ -43,7 +45,7 @@ primary
   : ID
     {
       std::cout << "line " << $ID.getLine() 
-                << ": ref to " << symtab.resolve($ID.text)
+                << ": ref to " << symtab->resolve($ID.text)
                 << std::endl;
     }
   | INT
