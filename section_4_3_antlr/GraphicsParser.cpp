@@ -1,5 +1,5 @@
 
-// Generated from Graphics.g by ANTLR 4.7.1
+// Generated from Graphics.g by ANTLR 4.13.1
 
 
 #include "GraphicsListener.h"
@@ -8,14 +8,95 @@
 
 
 using namespace antlrcpp;
+
 using namespace antlr4;
 
-GraphicsParser::GraphicsParser(TokenStream *input) : Parser(input) {
-  _interpreter = new atn::ParserATNSimulator(this, _atn, _decisionToDFA, _sharedContextCache);
+namespace {
+
+struct GraphicsParserStaticData final {
+  GraphicsParserStaticData(std::vector<std::string> ruleNames,
+                        std::vector<std::string> literalNames,
+                        std::vector<std::string> symbolicNames)
+      : ruleNames(std::move(ruleNames)), literalNames(std::move(literalNames)),
+        symbolicNames(std::move(symbolicNames)),
+        vocabulary(this->literalNames, this->symbolicNames) {}
+
+  GraphicsParserStaticData(const GraphicsParserStaticData&) = delete;
+  GraphicsParserStaticData(GraphicsParserStaticData&&) = delete;
+  GraphicsParserStaticData& operator=(const GraphicsParserStaticData&) = delete;
+  GraphicsParserStaticData& operator=(GraphicsParserStaticData&&) = delete;
+
+  std::vector<antlr4::dfa::DFA> decisionToDFA;
+  antlr4::atn::PredictionContextCache sharedContextCache;
+  const std::vector<std::string> ruleNames;
+  const std::vector<std::string> literalNames;
+  const std::vector<std::string> symbolicNames;
+  const antlr4::dfa::Vocabulary vocabulary;
+  antlr4::atn::SerializedATNView serializedATN;
+  std::unique_ptr<antlr4::atn::ATN> atn;
+};
+
+::antlr4::internal::OnceFlag graphicsParserOnceFlag;
+#if ANTLR4_USE_THREAD_LOCAL_CACHE
+static thread_local
+#endif
+GraphicsParserStaticData *graphicsParserStaticData = nullptr;
+
+void graphicsParserInitialize() {
+#if ANTLR4_USE_THREAD_LOCAL_CACHE
+  if (graphicsParserStaticData != nullptr) {
+    return;
+  }
+#else
+  assert(graphicsParserStaticData == nullptr);
+#endif
+  auto staticData = std::make_unique<GraphicsParserStaticData>(
+    std::vector<std::string>{
+      "file", "command", "point"
+    },
+    std::vector<std::string>{
+      "", "'line'", "'from'", "'to'", "','"
+    },
+    std::vector<std::string>{
+      "", "", "", "", "", "INT", "WS"
+    }
+  );
+  static const int32_t serializedATNSegment[] = {
+  	4,1,6,22,2,0,7,0,2,1,7,1,2,2,7,2,1,0,4,0,8,8,0,11,0,12,0,9,1,1,1,1,1,
+  	1,1,1,1,1,1,1,1,2,1,2,1,2,1,2,1,2,0,0,3,0,2,4,0,0,19,0,7,1,0,0,0,2,11,
+  	1,0,0,0,4,17,1,0,0,0,6,8,3,2,1,0,7,6,1,0,0,0,8,9,1,0,0,0,9,7,1,0,0,0,
+  	9,10,1,0,0,0,10,1,1,0,0,0,11,12,5,1,0,0,12,13,5,2,0,0,13,14,3,4,2,0,14,
+  	15,5,3,0,0,15,16,3,4,2,0,16,3,1,0,0,0,17,18,5,5,0,0,18,19,5,4,0,0,19,
+  	20,5,5,0,0,20,5,1,0,0,0,1,9
+  };
+  staticData->serializedATN = antlr4::atn::SerializedATNView(serializedATNSegment, sizeof(serializedATNSegment) / sizeof(serializedATNSegment[0]));
+
+  antlr4::atn::ATNDeserializer deserializer;
+  staticData->atn = deserializer.deserialize(staticData->serializedATN);
+
+  const size_t count = staticData->atn->getNumberOfDecisions();
+  staticData->decisionToDFA.reserve(count);
+  for (size_t i = 0; i < count; i++) { 
+    staticData->decisionToDFA.emplace_back(staticData->atn->getDecisionState(i), i);
+  }
+  graphicsParserStaticData = staticData.release();
+}
+
+}
+
+GraphicsParser::GraphicsParser(TokenStream *input) : GraphicsParser(input, antlr4::atn::ParserATNSimulatorOptions()) {}
+
+GraphicsParser::GraphicsParser(TokenStream *input, const antlr4::atn::ParserATNSimulatorOptions &options) : Parser(input) {
+  GraphicsParser::initialize();
+  _interpreter = new atn::ParserATNSimulator(this, *graphicsParserStaticData->atn, graphicsParserStaticData->decisionToDFA, graphicsParserStaticData->sharedContextCache, options);
 }
 
 GraphicsParser::~GraphicsParser() {
   delete _interpreter;
+}
+
+const atn::ATN& GraphicsParser::getATN() const {
+  return *graphicsParserStaticData->atn;
 }
 
 std::string GraphicsParser::getGrammarFileName() const {
@@ -23,11 +104,15 @@ std::string GraphicsParser::getGrammarFileName() const {
 }
 
 const std::vector<std::string>& GraphicsParser::getRuleNames() const {
-  return _ruleNames;
+  return graphicsParserStaticData->ruleNames;
 }
 
-dfa::Vocabulary& GraphicsParser::getVocabulary() const {
-  return _vocabulary;
+const dfa::Vocabulary& GraphicsParser::getVocabulary() const {
+  return graphicsParserStaticData->vocabulary;
+}
+
+antlr4::atn::SerializedATNView GraphicsParser::getSerializedATN() const {
+  return graphicsParserStaticData->serializedATN;
 }
 
 
@@ -67,7 +152,11 @@ GraphicsParser::FileContext* GraphicsParser::file() {
   enterRule(_localctx, 0, GraphicsParser::RuleFile);
   size_t _la = 0;
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
@@ -128,7 +217,11 @@ GraphicsParser::CommandContext* GraphicsParser::command() {
   CommandContext *_localctx = _tracker.createInstance<CommandContext>(_ctx, getState());
   enterRule(_localctx, 2, GraphicsParser::RuleCommand);
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
@@ -189,7 +282,11 @@ GraphicsParser::PointContext* GraphicsParser::point() {
   PointContext *_localctx = _tracker.createInstance<PointContext>(_ctx, getState());
   enterRule(_localctx, 4, GraphicsParser::RulePoint);
 
+#if __cplusplus > 201703L
+  auto onExit = finally([=, this] {
+#else
   auto onExit = finally([=] {
+#endif
     exitRule();
   });
   try {
@@ -211,69 +308,10 @@ GraphicsParser::PointContext* GraphicsParser::point() {
   return _localctx;
 }
 
-// Static vars and initialization.
-std::vector<dfa::DFA> GraphicsParser::_decisionToDFA;
-atn::PredictionContextCache GraphicsParser::_sharedContextCache;
-
-// We own the ATN which in turn owns the ATN states.
-atn::ATN GraphicsParser::_atn;
-std::vector<uint16_t> GraphicsParser::_serializedATN;
-
-std::vector<std::string> GraphicsParser::_ruleNames = {
-  "file", "command", "point"
-};
-
-std::vector<std::string> GraphicsParser::_literalNames = {
-  "", "'line'", "'from'", "'to'", "','"
-};
-
-std::vector<std::string> GraphicsParser::_symbolicNames = {
-  "", "", "", "", "", "INT", "WS"
-};
-
-dfa::Vocabulary GraphicsParser::_vocabulary(_literalNames, _symbolicNames);
-
-std::vector<std::string> GraphicsParser::_tokenNames;
-
-GraphicsParser::Initializer::Initializer() {
-	for (size_t i = 0; i < _symbolicNames.size(); ++i) {
-		std::string name = _vocabulary.getLiteralName(i);
-		if (name.empty()) {
-			name = _vocabulary.getSymbolicName(i);
-		}
-
-		if (name.empty()) {
-			_tokenNames.push_back("<INVALID>");
-		} else {
-      _tokenNames.push_back(name);
-    }
-	}
-
-  _serializedATN = {
-    0x3, 0x608b, 0xa72a, 0x8133, 0xb9ed, 0x417c, 0x3be7, 0x7786, 0x5964, 
-    0x3, 0x8, 0x18, 0x4, 0x2, 0x9, 0x2, 0x4, 0x3, 0x9, 0x3, 0x4, 0x4, 0x9, 
-    0x4, 0x3, 0x2, 0x6, 0x2, 0xa, 0xa, 0x2, 0xd, 0x2, 0xe, 0x2, 0xb, 0x3, 
-    0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x3, 0x4, 0x3, 
-    0x4, 0x3, 0x4, 0x3, 0x4, 0x3, 0x4, 0x2, 0x2, 0x5, 0x2, 0x4, 0x6, 0x2, 
-    0x2, 0x2, 0x15, 0x2, 0x9, 0x3, 0x2, 0x2, 0x2, 0x4, 0xd, 0x3, 0x2, 0x2, 
-    0x2, 0x6, 0x13, 0x3, 0x2, 0x2, 0x2, 0x8, 0xa, 0x5, 0x4, 0x3, 0x2, 0x9, 
-    0x8, 0x3, 0x2, 0x2, 0x2, 0xa, 0xb, 0x3, 0x2, 0x2, 0x2, 0xb, 0x9, 0x3, 
-    0x2, 0x2, 0x2, 0xb, 0xc, 0x3, 0x2, 0x2, 0x2, 0xc, 0x3, 0x3, 0x2, 0x2, 
-    0x2, 0xd, 0xe, 0x7, 0x3, 0x2, 0x2, 0xe, 0xf, 0x7, 0x4, 0x2, 0x2, 0xf, 
-    0x10, 0x5, 0x6, 0x4, 0x2, 0x10, 0x11, 0x7, 0x5, 0x2, 0x2, 0x11, 0x12, 
-    0x5, 0x6, 0x4, 0x2, 0x12, 0x5, 0x3, 0x2, 0x2, 0x2, 0x13, 0x14, 0x7, 
-    0x7, 0x2, 0x2, 0x14, 0x15, 0x7, 0x6, 0x2, 0x2, 0x15, 0x16, 0x7, 0x7, 
-    0x2, 0x2, 0x16, 0x7, 0x3, 0x2, 0x2, 0x2, 0x3, 0xb, 
-  };
-
-  atn::ATNDeserializer deserializer;
-  _atn = deserializer.deserialize(_serializedATN);
-
-  size_t count = _atn.getNumberOfDecisions();
-  _decisionToDFA.reserve(count);
-  for (size_t i = 0; i < count; i++) { 
-    _decisionToDFA.emplace_back(_atn.getDecisionState(i), i);
-  }
+void GraphicsParser::initialize() {
+#if ANTLR4_USE_THREAD_LOCAL_CACHE
+  graphicsParserInitialize();
+#else
+  ::antlr4::internal::call_once(graphicsParserOnceFlag, graphicsParserInitialize);
+#endif
 }
-
-GraphicsParser::Initializer GraphicsParser::_init;
