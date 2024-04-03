@@ -1,0 +1,11 @@
+1) antlr4 Cymbol.g
+2) javac *.java
+3) java Test < t.cymbol
+line 1: ref int
+line 1: def i
+line 2: ref float
+line 2: def j
+line 3: ref int
+line 3: ref to <i:int>
+line 3: def k
+global: {i=<i:int>, j=<j:float>, k=<k:int>, float=float, int=int}
