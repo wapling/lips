@@ -1,0 +1,13 @@
+1) antlr4 -Dlanguage=Cpp Cymbol.g
+2) make
+3) /example < t.cymbol
+line 1: ref int
+line 1: def i
+line 2: ref float
+line 2: def j
+line 3: ref int
+line 3: ref to <i:int>
+line 3: def k
+global: {k=<k:int>, j=<j:float>, i=<i:int>, float=float, int=int}
+
+
