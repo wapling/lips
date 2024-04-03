@@ -2,16 +2,27 @@ Cannot get this going with ANTLR4.
 
 Error messages as follows:
 
+error(50): VecMath.g:6:18: syntax error: '->' came as a complete surprise to me while looking for rule element
+error(50): VecMath.g:6:21: syntax error: '^' came as a complete surprise to me
+error(50): VecMath.g:7:19: syntax error: '->' came as a complete surprise to me while looking for rule element
+error(50): VecMath.g:7:22: syntax error: '^' came as a complete surprise to me
+error(50): VecMath.g:10:19: syntax error: '^' came as a complete surprise to me
+error(50): VecMath.g:12:23: syntax error: '^' came as a complete surprise to me
+error(50): VecMath.g:12:28: syntax error: '^' came as a complete surprise to me
+error(50): VecMath.g:16:35: syntax error: '->' came as a complete surprise to me while looking for rule element
+error(50): VecMath.g:16:38: syntax error: '^' came as a complete surprise to me
+error(50): VecMath.g:21:38: syntax error: ']' came as a complete surprise to me
+error(50): VecMath.g:23:0: syntax error: '<EOF>' came as a complete surprise to me while matching a lexer rule
 
-warning(202): /Users/martinwaplington/Documents/Programming/antlr/lips/pattern14_tree_grammar/VecMath.g:3:0: tokens {A; B;} syntax is now tokens {A, B} in ANTLR 4
-error(50): /Users/martinwaplington/Documents/Programming/antlr/lips/pattern14_tree_grammar/VecMath.g:6:18: syntax error: '->' came as a complete surprise to me while looking for rule element
-error(50): /Users/martinwaplington/Documents/Programming/antlr/lips/pattern14_tree_grammar/VecMath.g:6:21: syntax error: '^' came as a complete surprise to me
-error(50): /Users/martinwaplington/Documents/Programming/antlr/lips/pattern14_tree_grammar/VecMath.g:7:19: syntax error: '->' came as a complete surprise to me while looking for rule element
-error(50): /Users/martinwaplington/Documents/Programming/antlr/lips/pattern14_tree_grammar/VecMath.g:7:22: syntax error: '^' came as a complete surprise to me
-error(50): /Users/martinwaplington/Documents/Programming/antlr/lips/pattern14_tree_grammar/VecMath.g:10:19: syntax error: '^' came as a complete surprise to me
-error(50): /Users/martinwaplington/Documents/Programming/antlr/lips/pattern14_tree_grammar/VecMath.g:12:23: syntax error: '^' came as a complete surprise to me
-error(50): /Users/martinwaplington/Documents/Programming/antlr/lips/pattern14_tree_grammar/VecMath.g:12:28: syntax error: '^' came as a complete surprise to me
-error(50): /Users/martinwaplington/Documents/Programming/antlr/lips/pattern14_tree_grammar/VecMath.g:16:35: syntax error: '->' came as a complete surprise to me while looking for rule element
-error(50): /Users/martinwaplington/Documents/Programming/antlr/lips/pattern14_tree_grammar/VecMath.g:16:38: syntax error: '^' came as a complete surprise to me
-error(50): /Users/martinwaplington/Documents/Programming/antlr/lips/pattern14_tree_grammar/VecMath.g:21:38: syntax error: ']' came as a complete surprise to me
-error(50): /Users/martinwaplington/Documents/Programming/antlr/lips/pattern14_tree_grammar/VecMath.g:23:0: syntax error: '<EOF>' came as a complete surprise to me while matching a lexer rule
+
+https://stackoverflow.com/questions/36858750/converting-from-antlr3-to-antlr4
+
+  Extract: ANTLR4 has no tree-rewriting. So, remove -> ... entirely
+
+Unfortunately this grammar has multiple tree-rewriting actions:
+
+
+stat: ID '=' expr -> ^('=' ID expr)
+    | 'print' expr -> ^('print' expr)
+
+
