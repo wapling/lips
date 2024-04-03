@@ -6,7 +6,31 @@ This repo is for the code I will write as I read Language Implementation Pattern
 Terence has written his excellent ANTLR tool in Java.  He has also written the book using Java examples.
 
 I intend to use C++ for this as it fits better with my skill set.  I will translate all examples to 
-equivalent C++ code.
+equivalent C++ code.  Once I have things working I will follow up with Python and Go.
+
+# Differences between ANTLR v3 and ANTLR v4
+
+There are substantial differences between these versions which drastically affect the approaches taken in the book.
+Some approaches now seem impossible, in particular the chapters on AST creation, Tree Grammars and Tree Rewriting.
+Even the chapters on Symbol Tables seem to suffer from this with Java code woven throughout the grammars.
+When one tries to replicate this in ANTLR v4 with injected C++ code to pass the symbol table to the start rule etc. then one finds that certain dynamic casts fail in the generated code, which does not check the returned pointer from the cast, and simply dereferences and of course segfaults.  There is no excuse for such naive code generation.
+
+It would save people a lot of time if ANTLR produced warnings and/or errors for these cases as the user is simply going to spend a long time debugging generated code and ultimately failing in their pursuit.  I certainly did.
+I intend to raise this as a bug with ANTLR and to then fix it (note to self, polish up your Java chops!)
+
+It is surprising that the Definitive ANTLR v4 reference simply airbrushes over these important changes and does not even include the terms "AST" or "abstract syntax" (see results from web searches below).  This does both new and existing users a huge disservice and renders the reference far from "Definitive" even if it is narrowly scoped to v4.
+
+https://stackoverflow.com/questions/36858750/converting-from-antlr3-to-antlr4
+
+  Extract: ANTLR4 has no tree-rewriting. So, remove -> ... entirely
+  Extract: There is no way in ANTLR 4 to rewrite a (parse) tree.
+
+https://stackoverflow.com/questions/15823333/how-can-i-build-an-ast-using-antlr4
+
+  Extract: For example, the output=AST option is no longer recognized. Furthermore neither "AST" nor "abstract syntax" appears in the text of "The Definitive ANTLR4 reference".
+
+https://stackoverflow.com/questions/43030478/attribute-references-not-allowed-in-lexer-actions
+
 
 
 # Warnings Building ANTLR C++ Runtime Code
