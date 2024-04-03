@@ -11,12 +11,12 @@ grammar Cymbol;
 }
 
 @members {
-  SymbolTablePtr symtab;
+  SymbolTablePtr symtab_;
 }
 
 compilationUnit[SymbolTablePtr symtab]
 
-@init {this->symtab = symtab;}
+@init {this->symtab_ = symtab;}
   : varDeclaration+
   ;
 
@@ -26,8 +26,8 @@ type returns [TypePtr tsym]
             << ": ref " << $tsym->get_name()
             << std::endl;
 }
-  : 'float' {$tsym = std::dynamic_pointer_cast<Type>(symtab->resolve("float"));}
-  | 'int'   {$tsym = std::dynamic_pointer_cast<Type>(symtab->resolve("int"));}
+  : 'float' {$tsym = std::dynamic_pointer_cast<Type>(symtab_->resolve("float"));}
+  | 'int'   {$tsym = std::dynamic_pointer_cast<Type>(symtab_->resolve("int"));}
   ;
 
 varDeclaration
@@ -37,7 +37,7 @@ varDeclaration
                 << ": def " << $ID->getText()
                 << std::endl;
       SymbolPtr vs(std::make_shared<VariableSymbol>($ID->getText(), $type.tsym));
-      symtab->define(vs);
+      symtab_->define(vs);
     }
   ;
 
@@ -49,7 +49,7 @@ primary
   : ID
     {
       std::cout << "line " << $ID->getLine() 
-                << ": ref to " << symtab->resolve($ID->getText())
+                << ": ref to " << *symtab_->resolve($ID->getText())
                 << std::endl;
     }
   | INT
@@ -64,6 +64,9 @@ fragment
 LETTER : ('a'..'z' | 'A'..'Z') ;
 
 INT : '0'..'9'+ ;
+
+WS  : (' '| '\r' | '\n' | '\t' ) {skip();}
+    ;
 
 SL_COMMENT
   : '//' ~('\r'|'\n')* 'r'? '\n' {skip();}

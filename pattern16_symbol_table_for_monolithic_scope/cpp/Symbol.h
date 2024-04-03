@@ -2,6 +2,7 @@
 
 #include "Type.h"
 
+#include <iosfwd>
 #include <memory>
 #include <string>
 
@@ -23,10 +24,12 @@ public:
 
   virtual ~Symbol() = default;
 
-  std::string const& get_name() { return name_; }
+  virtual std::string get_name() const { return name_; }
 
-  std::string to_string();
+  virtual std::string to_string() const;
 };
 
 typedef std::shared_ptr<Symbol> SymbolPtr;
+
+std::ostream& operator<<(std::ostream& ostrm, Symbol const& data);
 

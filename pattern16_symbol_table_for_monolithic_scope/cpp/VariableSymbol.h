@@ -10,5 +10,7 @@ struct VariableSymbol : Symbol
   VariableSymbol(std::string const& name, TypePtr type) :
     Symbol(name, type)
   {}
+
+  virtual ~VariableSymbol() = default;
 };
 

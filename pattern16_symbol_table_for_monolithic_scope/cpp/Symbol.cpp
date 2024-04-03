@@ -1,8 +1,9 @@
 #include "Symbol.h"
 
+#include <ostream>
 #include <sstream>
 
-std::string Symbol::to_string()
+std::string Symbol::to_string() const
 {
   if (type_)
   {
@@ -12,5 +13,10 @@ std::string Symbol::to_string()
   }
   else
     return get_name();
+}
+
+std::ostream& operator<<(std::ostream& ostrm, Symbol const& data)
+{
+  return ostrm << data.to_string();
 }
 

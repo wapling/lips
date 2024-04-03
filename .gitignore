@@ -2,5 +2,8 @@
 histlog.txt
 *.o
 *.d
+*.class
 *.swp
+*.tokens
+*.interp
 example
