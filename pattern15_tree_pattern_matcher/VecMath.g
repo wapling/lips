@@ -1,6 +1,6 @@
 grammar VecMath;
 options {output=AST;} //create ASTs
-tokens { VEC; }       //imaginary token for vector literal
+tokens { VEC }       //imaginary token for vector literal
 
 prog: stat+ ;
 stat: ID '=' expr -> ^('=' ID expr)
