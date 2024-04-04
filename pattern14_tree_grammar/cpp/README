@@ -1,0 +1,9 @@
+Note: cannot get the grammar to use tokens from VecMath.g
+
+1) antlr4 -Dlanguage=Cpp Printer.g
+2) make
+3) ./example < t1
+
+x = 3+4
+print x*[2, 3, 4]
+
