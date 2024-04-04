@@ -35,7 +35,6 @@ class TestListener extends PrinterBaseListener
   {
     if (ctx.multExpr().size() > 1)
       infix_op = '+';
-    //  System.out.print("+");
   }
 
 	@Override
@@ -43,7 +42,6 @@ class TestListener extends PrinterBaseListener
   {
     if (ctx.primary().size() > 1)
       infix_op = '*';
-    //  System.out.print("*");
   }
 
 	@Override
