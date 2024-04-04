@@ -1,6 +1,6 @@
 grammar Cymbol;
 
-compilationUnit
+compilationUnit //[SymbolTable symtab]
 //@init { this.symtab = symtab; }
   : varDeclaration+ 
   ;
