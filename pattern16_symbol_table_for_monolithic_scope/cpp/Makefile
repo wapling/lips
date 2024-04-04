@@ -1,3 +1,4 @@
+GRAMMAR_NAME = Cymbol
 
 STD_HEADERS = /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include
 
@@ -13,8 +14,8 @@ LDFLAGS = -stdlib=libc++ \
 OBJS := main.o \
 				Symbol.o \
 				SymbolTable.o \
-				CymbolLexer.o \
-				CymbolParser.o \
+				$(GRAMMAR_NAME)Lexer.o \
+				$(GRAMMAR_NAME)Parser.o \
 
 all: example 
 
